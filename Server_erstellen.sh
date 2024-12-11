@@ -4,6 +4,7 @@
 set -e
 
 # Variablen
+AWS_REGION="us-east-1"
 INSTANCE_TYPE="t2.micro"
 KEY_NAME="AWS-cli"
 WEB_SECURITY_GROUP_NAME="webServer-gruppe"
@@ -19,14 +20,14 @@ if ! command -v aws &> /dev/null; then
   sudo apt install -y awscli
 fi
 
-if ! command -v curl &> /dev/null; 
+if ! command -v curl &> /dev/null; then
   echo "installation wird ausgeführt"
   sudo apt install -y curl
 fi
 
 # Stelle sicher, dass AWS CLI konfiguriert ist
 if ! aws configure get region &> /dev/null; then
-  echo "AWS CLI wird konfiguriert...
+  echo "AWS CLI wird konfiguriert..."
   aws configure set region $AWS_REGION
   aws configure
 fi
@@ -44,7 +45,7 @@ fi
 
 # Erstelle ein Schlüsselpaar
 if ! aws ec2 describe-key-pairs --key-name $KEY_NAME > /dev/null 2>&1; then
-  echo Erstelle Schlüsselpaar $KEY_NAME..."
+  echo "Erstelle Schlüsselpaar $KEY_NAME..."
   aws ec2 create-key-pair --key-name $KEY_NAME --key-type rsa \
     --query 'KeyMaterial' --output text > ~/.ssh/$KEY_NAME.pem
   chmod 400 ~/.ssh/$KEY_NAME.pem

@@ -3,7 +3,7 @@
 
 Dieses Repository wurde von **Yeremy Frei**, **Massimo Montesarchio** und **Luc Aeby** im Rahmen der Projektarbeit im Modul 346 erstellt.
 
-Die Dokumentation findest man unter https://github.com/Luc080/M346-Ticketsystem/blob/main/Dokumentation.md
+Die Dokumentation findet man unter https://github.com/Luc080/M346-Ticketsystem/blob/main/Dokumentation.md
 
 Unser Projekt zielt darauf ab, eine AWS-Infrastruktur für ein Ticketsystem mit **zoho** bereitzustellen. Es beinhaltet:
 - Einen **Webserver** mit **PHP** und **Apache**

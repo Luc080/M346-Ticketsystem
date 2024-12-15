@@ -15,7 +15,6 @@
 <span style="margin-left: 10px;">[6.3 Yeremy Frei](#63-yeremy-frei)
 
 
-
 ## 1. Projektinfos 
 
 ### 1.1 Projektaufgabenstellung

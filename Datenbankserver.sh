@@ -6,7 +6,7 @@ LOGFILE="/var/log/mariadb_setup.log"
 exec > >(tee -i $LOGFILE) 2>&1
 
 # Standardwerte
-DB_NAME=${1:-osticket}
+DB_NAME=${1:-Ticketdb}
 DB_USER=${2:-osTicketbenutzer}
 DB_PASSWORD=${3:-"Riethuesli>12345"}
 

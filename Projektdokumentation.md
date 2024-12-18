@@ -27,11 +27,11 @@ Für das Projekt wurde ein Ticketsystem in der Cloud implementiert. Die Konfigur
 Die Projektaufgaben wurden entsprechend der individuellen Stärken aufgeteilt: Massimo fokussierte sich auf das Layout, Yeremy auf den Code und Luc auf die Dokumentation. Dennoch haben alle Teammitglieder aktiv an allen Bereichen mitgewirkt, codiert, geschrieben und Entscheidungen gemeinsam getroffen.
 
 ### 1.3 Entscheidungen
-#### 1.3.1 Warum zoho?
-Wir haben uns für das Zoho-Tickettool entschieden, da es als SaaS-Lösung keine lokale Installation erfordert und einfach zugänglich ist.
+#### 1.3.1 Warum osTicket?
+Zu Beginn haben wir uns für zoho entschieden, da dies jedoch eine SaaS Lösung ist und wir dies nicht umsetzten konnten, haben wir uns trotzdem noch für osTicket entschieden, weil dies eine direkte Installation ist und dies einfach zu implementieren ist.
 
-#### 1.3.2 Warum yaml? (.yml)
-Zudem wurden .yml-Dateien gewählt, da sie eine klar strukturierte und flexible Möglichkeit zur Konfiguration bieten, im Gegensatz zu den komplexeren .sh-Skripten.
+#### 1.3.2 Warum Terraform?
+Auch hier hatten wir uns zuerts für die Variante mit .yml Dateien entschieden, da wir jedoch Terraform im Nachhinein für sinnvoller hielten, haben wir uns doch für Terraform entschieden. Wir haben uns zuerst mit dem Thema befasst und danach in die Praxis umgesetzt.
 
 ## 2. Skripte
 Wir haben drei verschiedene Skript-Dateien erstellt: eine Shell-Datei namens `server_erstellen.sh` sowie zwei .yml-Dateien, `datenbankserver.yml` und `webserver.yml`. In diesen Dateien sind alle notwendigen Konfigurationen und Installationen detailliert dokumentiert.

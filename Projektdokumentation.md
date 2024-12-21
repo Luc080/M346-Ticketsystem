@@ -87,6 +87,7 @@ Sobald das Skript abgeschlossen ist, kannst du im Browser die IP-Adresse des Web
 
 
 ## 5. Verbesserungen
+Es wäre hilfreich gewesen, sich vorher besser mit AWS auseinanderzusetzen, um ein klareres Bild davon zu bekommen, wie es technisch funktioniert und was die Anforderungen an das Projekt und die Infrastruktur sind. Vielleicht hätten wir auch einfach mal ein bisschen mit AWS herumprobieren können, nicht, um die Projektanforderungen direkt zu erfüllen, sondern um AWS auszutesten
 
 
 ## 6. Reflexion

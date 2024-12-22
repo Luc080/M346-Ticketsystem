@@ -26,11 +26,11 @@ Damit man das Projekt ausführen kannst, solltest man Folgendes installiert und 
    ```
 2. Setzten Sie Die benötigten berechtigungen um das Installation.sh Script ausführen zu können.
 ```bash
-chmod 755 installation.sh
+chmod 755 Scripts/Installation.sh
 ```
 3. Starten Sie die Installation:
 ```bash
-./Installation.sh
+./Scripts/Installation.sh
 ```
 4. Greifen Sie nachdem das Script fertig ist auf den erstellten Webserver zu indem sie die angegebene öffentliche IP in ihrem Brower eingeben.
 5. KlicKen Sie in der osTicket anscht auf "Continue"

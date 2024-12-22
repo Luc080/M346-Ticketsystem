@@ -60,12 +60,72 @@ Webserver.sh:
 Das Webserver.sh-Skript übernimmt die Installation unseres Tickettools. Es konfiguriert die Apache-Instanz und installiert gleichzeitig das osTicket-Tool.
 
 ### 2.1 Code erklärt
+- Im folgenden Abschnitt werden die verschiedenen Skripte erläutert. Zusätzlich sind Erklärungen zu den Skripten direkt in jedem Skript als Kommentare enthalten.
+- **Installation.sh:**
+```bash
+#!/bin/bash
+set -e
+ 
+echo "Terraform-Setup wird gestartet..."
+ 
+# Installation Terraform
+    echo "Installiere Terraform Version ${TERRAFORM_VERSION}..."
+    sudo apt-get update -y
+    sudo apt-get install -y wget unzip
+    wget https://releases.hashicorp.com/terraform/1.5.5/terraform_1.5.5_linux_amd64.zip
+    unzip terraform_1.5.5_linux_amd64.zip
+    sudo mv terraform /usr/local/bin/
+    rm terraform_1.5.5_linux_amd64.zip
+```
+**Erklärung:** Bei diesem Codeblock wird Terraform erstmalig installiert.
 
+ ```bash
+# Initialisiert und konfiguriert Terraform
+echo "Terraform wird eingerichtet"
+terraform init
+echo "Terraformkonfiguration wird angewendet.."
+terraform apply -auto-approve
+ ```
+**Erklärung:** Initialisiert und Konfiguriert Terraform, um die Infrastruktur zu erstellen.
+
+```bash
+# Webserver- und Datenbankserver-IPs abrufen
+WEB_SERVER_IP=$(terraform output -raw web_server_public_ip 2>/dev/null || echo "Nicht verfügbar")
+DB_SERVER_PUBLIC_IP=$(terraform output -raw db_server_public_ip 2>/dev/null || echo "Nicht verfügbar")
+```
+**Erklärung:** Die öffentlichen IP-Adressen des Webservers, wie auch Datenbankserver werden ausgegeben.
+
+# Logging aktivieren
+```bash
+LOGFILE="/var/log/terraform_setup.log"
+```
+
+# Sicherstellen, dass die Logdatei existiert oder sie mit sudo erstellt wird
+```bash
+sudo touch $LOGFILE
+```
+
+# Alle Ausgaben (stdout und stderr) in die Logdatei und auf die Konsole leiten
+```bash
+exec > >(sudo tee -i $LOGFILE) 2>&1
+```
+# Standardvariablen werden festgelegt
+```bash
+TERRAFORM_VERSION=${1:-1.5.5}
+TERRAFORM_URL="https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
+ ```
+ ```bash
+# Überprüfen der Terraform-Version
+INSTALLED_VERSION=$(terraform version | head -n 1 | awk '{print $2}' | tr -d 'v')
+if [[ "$INSTALLED_VERSION" != "$TERRAFORM_VERSION" ]]; then
+    echo "Installierte Terraform-Version ($INSTALLED_VERSION) stimmt nicht mit der gewünschten Version ($TERRAFORM_VERSION) überein."
+    exit 1
+fi
+```
 
 ## 3. Installationsanleitung
 
 Damit alles reibungslos funktioniert, müssen folgende Schritte zuerst erledigt werden:
-
 
 ### Voraussetzungen
 
@@ -131,7 +191,8 @@ Wie bei jedem Projekt gibt es immer Dinge, die man im Nachhinein anders oder bes
 
 
 ### 6.3 Yeremy Frei
-
+Zu Beginn muss ich ehrlich zugeben, dass ich mich nicht wirklich über dieses Projekt gefreut habe. Ich wurde quasi ins kalte Wasser geworfen, und ich denke, das ging nicht nur mir und meiner Gruppe so sondern auch den anderen Gruppe. Wir hatten anfangs keine klare Vorstellung davon, wie wir das Projekt umsetzen sollten. Mit der Zeit wurde jedoch alles verständlicher, und am Ende des Projekts muss ich sagen, dass es mir letztlich doch geholfen hat. Eine derartige Umsetzung mit AWS hatte ich bisher noch nie durchgeführt. Nach Rücksprache in meiner Firma stellte sich zudem heraus, dass ausser den Lehrlingen auch niemand sonst vergleichbare Erfahrungen gesammelt hat.
+Obwohl mich das Projekt mindestens 25 Arbeitsstunden und sicherlich auch einige Nerven gekostet hat, bin ich froh, dass ich es umsetzen konnte. Im Nachhinein denke ich jedoch, dass man das Modul anders hätte gestalten sollen. Wie bereits in den Verbesserungsvorschlägen erwähnt, hätte man zunächst ein solides Grundwissen über AWS aufbauen müssen, bevor man ein solches Projekt startet. Nichtsdestotrotz haben wir es am Ende geschafft, und ich bin stolz auf das Ergebnis.
 
 
 

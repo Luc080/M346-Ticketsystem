@@ -112,6 +112,7 @@ chmod u+x installation.sh
 5. Greifen sie nachdem das Script fertig ist auf den erstellten Webserver zu indem sie die angegebene éffentliche IP in ihrem Brower eingenen.
 6. klichen sie in der osTicket anscht auf "Continue"
 7. Füllen sie nu die Angezeigten Felder mit den Angegebenen Informationen ein:
+   
 | Feld         | Wert                        |
 |----------------------|-----------------------------|
 | **MySQL Hostname**    | <DB_SERVER_PUBLIC_IP>      |

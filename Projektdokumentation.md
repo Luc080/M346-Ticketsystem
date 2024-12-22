@@ -1,5 +1,5 @@
 # **Projektdokumentation M346 Ticketsystem**
-
+Das vorliegende Repository ist das Ergebnis einer gemeinsamen Entwicklung von Yeremy Frei, Luc Aeby und Massimo Montesarchio. In dieser Dokumentation wird der gesamte Projektverlauf detailliert beschrieben, angefangen bei der initialen Planung bis hin zur Fertigstellung des Skripts. Darüber hinaus bieten wir eine ausführliche Anleitung zur Installation des Ticketsystems, das mithilfe unseres Skripts implementiert werden kann.
 ## **Inhaltsverzeichnis**
 
 [1. Projektinfos](#1-projektinfos) \

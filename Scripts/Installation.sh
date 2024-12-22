@@ -21,8 +21,6 @@ terraform apply -auto-approve
 # Webserver- und Datenbankserver-IPs abrufen
 WEB_SERVER_IP=$(terraform output -raw web_server_public_ip 2>/dev/null || echo "Nicht verfügbar")
 DB_SERVER_PUBLIC_IP=$(terraform output -raw db_server_public_ip 2>/dev/null || echo "Nicht verfügbar")
- 
-#!/bin/bash
 
 # Logging aktivieren
 LOGFILE="/var/log/terraform_setup.log"

@@ -23,28 +23,41 @@ Das vorliegende Repository ist das Ergebnis einer gemeinsamen Entwicklung von Ye
 ---
 ## 1. Projektinfos 
 
-In diesem Teil der Dokumentation gibt es grundlegende Informationen zum Projekt sowie die gegebene Aufgabe, die Wahl des Ticketsystems und die Verteilung der Aufgaben.
-
 ### 1.1 Projektaufgabenstellung
 
-Für das Projekt wurde ein Ticketsystem in der Cloud implementiert. Die Konfiguration der Web- und Datenbankserver sowie die Bereitstellung des Systems erfolgten automatisiert über Skripte und YAML-Dateien
+Für das Projekt wurde ein Ticketsystem in der Cloud implementiert. Ziel war es, den gesamten Aufbau des Systems umzusetzen – von der Installation der Instanzen bis hin zum funktionierenden Ticketsystem. Die Konfiguration umfasst sowohl den Web- als auch den Datenbankserver. Die Bereitstellung der erforderlichen Server und Instanzen sowie die Einrichtung der Datenbanken und des Ticket-Tools erfolgen automatisch durch die erstellten Skripte.
 
 ### 1.2 Zuständigkeiten
 
 Die Projektaufgaben wurden entsprechend der individuellen Stärken aufgeteilt: Massimo fokussierte sich auf das Layout, Yeremy auf den Code und Luc auf die Dokumentation. Dennoch haben alle Teammitglieder aktiv an allen Bereichen mitgewirkt, codiert, geschrieben und Entscheidungen gemeinsam getroffen.
 
 ### 1.3 Entscheidungen
+
+Während des Projekts ergaben sich verschiedene Situationen, in denen wir uns als Gruppe zwischen Zahlreichen Umsetzungsvarianten entscheiden mussten.
+
 #### 1.3.1 Warum osTicket?
 
-Am Anfgang haben wir uns für Zoho entschieden, da es eine SaaS-Lösung ist. Da wir dies jedoch nicht umsetzen konnten, haben wir uns stattdessen für osTicket entschieden. Diese Lösung liess sich direkt auf unseren Servern installieren und einfach in unsere Infrastruktur integrieren, was die Umsetzung deutlich erleichterte.
+Zu Beginn des Projekts hatten wir uns ursprünglich für Zoho als unser Tickettool entschieden. Der Grund dafür war, dass wir eine andere Lösung anbieten wollten als die anderen Gruppen in unserer Klasse. Während des Projekts stiessen wir jedoch auf zahlreiche Schwierigkeiten bei der Umsetzung, weshalb wir uns schliesslich dazu entschieden, das Tickettool erneut zu wechseln. Wir informierten uns, welches Tickettool am besten für unsere Umsetzung geeignet wäre. Da wir bereits von unserer ursprünglichen Entscheidung (Zoho) wussten, dass wir keine SaaS-Lösung verwenden wollten, entschieden wir uns schliesslich für osTicket, da es uns ermöglichte, die Umsetztung nach unseren Vorstellungen vorzunehmen.
 
 #### 1.3.2 Warum Terraform?
 
-Ursprünglich wollten wir YAML für unsere AWS-Infrastruktur verwenden. Wir haben uns jedoch für Terraform entschieden, da es speziell für Infrastructure-as-Code (IaC) entwickelt wurde. Terraform bietet Funktionen wie integriertes State-Management, die Möglichkeit, geplante Änderungen zu simulieren, und eine breite Unterstützung für Cloud-Provider wie AWS. Dadurch eignet es sich besser, Infrastruktur effizient und zuverlässig zu verwalten, während YAML hauptsächlich ein Datenformat ist.
+Auch bei der Art der Umsetzung waren wir zu Beginn unschlüssig, weshalb wir uns zunächst für die Umsetzung durch YAML-Dateien entschieden hatten. Ähnlich wie bei Zoho stießen wir jedoch bei der Installation des Apache-Dienstes sowie bei der Installation von osTicket auf mehrere Probleme. Nach zahlreichen Stunden und noch immer keiner vernünftigen Lösung entschieden wir uns, erneut umzuschwenken und Terraform zu verwenden, da es speziell für Infrastructure-as-Code (IaC) entwickelt wurde. Terraform bot uns verschiedene Funktionen, wie z.B. integriertes State-Management, wodurch uns die Umsetzung erstaunlicherweise schnell gelang. Trotz anfänglicher Schwierigkeiten und umfangreichem Rechercheaufwand konnten wir unser System schließlich mit Terraform wie gewünscht umsetzen.
 
 ## 2. Skripte
 
-Wir haben drei verschiedene Skript-Dateien erstellt: eine Shell-Datei namens `server_erstellen.sh` sowie zwei .yml-Dateien, `datenbankserver.yml` und `webserver.yml`. In diesen Dateien sind alle notwendigen Konfigurationen und Installationen detailliert dokumentiert.
+Für die implementierung haben wir ingseamt vier Scripte bzw Konfigurationen benötigt
+
+Installation.sh:
+Das Installation.sh skript automatisier die Installation von Terraform. Zudem wird es für das ausführen aller anderen scripte benötigt.
+
+Terraform-Konfiguration.tf:
+Die Terraform-Konfiguration.tf Konfiguration Definiert die gesamte AWS Infrastruktur. Dazu gehören die Schlüsselpaare, Sicherheitsgruppen wie auch die zwei benötigten EC2 Instanzen.
+
+Datenbankserver.sh:
+Das Datenbankserver.sh Skript ist für die Installation wie auch Konfiguration Unserer mariaDB Datenbank zuständig. Darin wird alles nötige wie Datenbank, benutzer, zugriff wie auch die passwörter konfiguriert.
+
+Webserver.sh:
+Das Webserver.sh Skript ist für die Installation unseres ticket tools zuständig. Es konfiguriert sowohl die Apache instanz und installiert zugleich das osTicket Tool.
 
 ### 2.1 Code erklärt
 
@@ -52,6 +65,12 @@ Wir haben drei verschiedene Skript-Dateien erstellt: eine Shell-Datei namens `se
 ## 3. Installationsanleitung
 
 Damit alles reibungslos funktioniert, müssen folgende Schritte zuerst erledigt werden:
+
+Voraussetztungen: Es muss eine Funktionierende Linux Maschine vorhanden sein, welche die nötigen berechtigungen besitzt als auch zugriff ins internet hat. Zudem sollte git installiert sein.
+
+Ablauf:
+
+1. das Repository sollte zu beginn geklont werden:
 
 ### Voraussetzungen
 

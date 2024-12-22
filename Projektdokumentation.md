@@ -48,19 +48,20 @@ Auch bei der Art der Umsetzung waren wir zu Beginn unschlüssig, weshalb wir uns
 Für die Implementierung haben wir insgesamt vier Skripte bzw. Konfigurationsdateien benötigt:
 
 Installation.sh:
-Das Installation.sh-Skript automatisiert die Installation von Terraform. Zudem dient es als Grundlage für die Ausführung aller anderen Skripte.
+Das Installation.sh Skript automatisiert die Installation von Terraform. Zudem dient es als Grundlage für die Ausführung aller anderen Skripte.
 
 Terraform-Konfiguration.tf:
 Die Terraform-Konfiguration.tf-Datei definiert die gesamte AWS-Infrastruktur. Dazu gehören die Schlüsselpaare, Sicherheitsgruppen sowie die zwei benötigten EC2-Instanzen.
 
 Datenbankserver.sh:
-Das Datenbankserver.sh-Skript ist für die Installation und Konfiguration unserer MariaDB-Datenbank zuständig. Es legt alles Notwendige fest, einschliesslich der Datenbank, Benutzer, Zugriffsrechte und Passwörter.
+Das Datenbankserver.sh Skript ist für die Installation und Konfiguration unserer MariaDB-Datenbank zuständig. Es legt alles Notwendige fest, einschliesslich der Datenbank, Benutzer, Zugriffsrechte und Passwörter.
 
 Webserver.sh:
-Das Webserver.sh-Skript übernimmt die Installation unseres Tickettools. Es konfiguriert die Apache-Instanz und installiert gleichzeitig das osTicket-Tool.
+Das Webserver.sh Skript übernimmt die Installation unseres Tickettools. Es konfiguriert die Apache-Instanz und installiert gleichzeitig das osTicket-Tool.
 
 ### 2.1 Code erklärt
 - Im folgenden Abschnitt werden die verschiedenen Skripte erläutert. Zusätzlich sind Erklärungen zu den Skripten direkt in jedem Skript als Kommentare enthalten.
+
 ## Installation.sh:
 
 - Bei diesem Codeblock wird Terraform erstmalig installiert.
@@ -455,7 +456,7 @@ chmod 755 installation.sh
 - **Datum:** 21.12.2024
 - **Tester:** Yeremy Frei
 - **Reslutat:**
-Nach dem Ausführen des installation.sh Skripts mussten wir testen, ob der Webserver erreichbar ist. Dabei haben wir die öffentliche IP-Adresse, die als Ausgabe angezeigt wurde, verwendet und versucht, uns darauf zu verbinden. Zunächst erhielten wir jedoch eine Fehlermeldung, dass der Server nicht erreichbar sei. Nach einigen Minuten funktionierte der Zugriff plötzlich. Wir stellten fest, dass wir zunächst hätten warten müssen, bis die Instanz in AWS vollständig initialisiert wurde – was wir anfangs nicht beachtet hatten. Nach der Initialisierung funktionierte der Zugriff jedoch problemlos, und wir wurden auf das Infofenster von osTicket weitergeleitet.
+Nach dem Ausführen des Installation.sh Skripts mussten wir testen, ob der Webserver erreichbar ist. Dabei haben wir die öffentliche IP-Adresse, die als Ausgabe angezeigt wurde, verwendet und versucht, uns darauf zu verbinden. Zunächst erhielten wir jedoch eine Fehlermeldung, dass der Server nicht erreichbar sei. Nach einigen Minuten funktionierte der Zugriff plötzlich. Wir stellten fest, dass wir zunächst hätten warten müssen, bis die Instanz in AWS vollständig initialisiert wurde – was wir anfangs nicht beachtet hatten. Nach der Initialisierung funktionierte der Zugriff jedoch problemlos, und wir wurden auf das Infofenster von osTicket weitergeleitet.
 
 ![Webserver_Zugriff](https://github.com/Luc080/M346-Ticketsystem/blob/main/Bilder/Webserver_Zugriff.png)
 

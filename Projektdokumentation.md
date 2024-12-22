@@ -68,10 +68,59 @@ Damit alles reibungslos funktioniert, müssen folgende Schritte zuerst erledigt 
 
 Voraussetztungen: Es muss eine Funktionierende Linux Maschine vorhanden sein, welche die nötigen berechtigungen besitzt als auch zugriff ins internet hat. Zudem sollte git installiert sein.
 
-Ablauf:
+### Ablauf:
 
 1. das Repository sollte zu beginn geklont werden:
+     ```bash
+   git clone https://github.com/Luc080/M346-Ticketsystem.git
+   cd M346-Ticketsystem.git/Skripts
+   ```
+2. Insatllieren sie AWS CLI:
+   
+Installieren Sie das Kommandozeilentool curl mit folgenden Commands:
+```bash
+sudo apt update
+sudo apt install curl
+```
+Mit curl wird nun die neuste Version der aws cli heruntergeladen, entpackt und installiert:
+```bash
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+```
+Durch den Abruf der installierten Version prüfen Sie, ob die Installation erfolgreich war:
+```bash
+aws --version
+```
+Sie erstellen bzw. aktualisieren die beiden Dateien credentials und config im Verzeichnis (~/.aws) indem Sie den Befehl ```bash aws configure ```ausführen und folgende Werte setzen:
 
+AWS Access Key ID: x (wird später noch überschrieben)
+AWS Secret Access Key x (wird später noch überschrieben)
+Default region name: us-east-1
+Default output format: json
+
+Danach können sie die Credentials direkt aus ihrem aws kopieren und in die Config datei einfügen und speichern.
+
+3. Setzten sie Die benötigten berechtigungen um das Installation.sh Script ausführen zu können.
+```bash
+chmod u+x installation.sh
+```
+4. Starten sie die Installation:
+```bash
+./Installation.sh
+```
+5. Greifen sie nachdem das Script fertig ist auf den erstellten Webserver zu indem sie die angegebene éffentliche IP in ihrem Brower eingenen.
+6. klichen sie in der osTicket anscht auf "Continue"
+7. Füllen sie nu die Angezeigten Felder mit den Angegebenen Informationen ein:
+| Feld         | Wert                        |
+|----------------------|-----------------------------|
+| **MySQL Hostname**    | <DB_SERVER_PUBLIC_IP>      |
+| **MySQL Database**    | osticket                   |
+| **MySQL Username**    | osuser              |
+| **MySQL Password**    | Riethuesli>12345             |
+
+8. klicken Sie nun auf "Install Now"
+   
 ### Voraussetzungen
 
 - [x] AWS CLI musst installiert sein und korrekt konfiguriert sein.

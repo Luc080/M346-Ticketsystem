@@ -8,7 +8,7 @@ Das vorliegende Repository ist das Ergebnis einer gemeinsamen Entwicklung von Ye
 &nbsp;&nbsp;&nbsp;[1.3 Entscheidungen](#13-entscheidungen) \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1.3.1 Warum osTicket?](#131-warum-osticket) \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1.3.2 Warum Terraform](#132-warum-terraform) \
-[2. Skripte](#2-skripte) \
+[2. Skripte](#2-ssripte) \
 &nbsp;&nbsp;&nbsp;[2.1 Code erklärt](#21-code-erklärt) \
 [3. Installationsanleitung](#3-installationsanleitung) \
 [4. Testfälle](#4-testfälle) \
@@ -424,7 +424,7 @@ Damit alles reibungslos funktioniert, müssen folgende Schritte zuerst erledigt 
    git clone https://github.com/Luc080/M346-Ticketsystem.git
    cd M346-Ticketsystem
    ```
-2. Setzten Sie Die benötigten berechtigungen um das Installation.sh Script ausführen zu können.
+2. Setzten Sie Die benötigten berechtigungen um das Installation.sh Skript ausführen zu können.
 ```bash
 chmod 755 installation.sh
 ```
@@ -432,7 +432,7 @@ chmod 755 installation.sh
 ```bash
 ./Installation.sh
 ```
-4. Greifen Sie nachdem das Script fertig ist auf den erstellten Webserver zu indem sie die angegebene öffentliche IP in ihrem Brower eingeben.
+4. Greifen Sie nachdem das Skript fertig ist auf den erstellten Webserver zu indem sie die angegebene öffentliche IP in ihrem Brower eingeben.
 5. KlicKen Sie in der osTicket anscht auf "Continue"
 6. Füllen Sie nu die Angezeigten Felder mit den Angegebenen Informationen ein:
    
@@ -455,7 +455,7 @@ chmod 755 installation.sh
 - **Datum:** 21.12.2024
 - **Tester:** Yeremy Frei
 - **Reslutat:**
-Nach dem Ausführen des installation.sh-Scripts mussten wir testen, ob der Webserver erreichbar ist. Dabei haben wir die öffentliche IP-Adresse, die als Ausgabe angezeigt wurde, verwendet und versucht, uns darauf zu verbinden. Zunächst erhielten wir jedoch eine Fehlermeldung, dass der Server nicht erreichbar sei. Nach einigen Minuten funktionierte der Zugriff plötzlich. Wir stellten fest, dass wir zunächst hätten warten müssen, bis die Instanz in AWS vollständig initialisiert wurde – was wir anfangs nicht beachtet hatten. Nach der Initialisierung funktionierte der Zugriff jedoch problemlos, und wir wurden auf das Infofenster von osTicket weitergeleitet.
+Nach dem Ausführen des installation.sh Skripts mussten wir testen, ob der Webserver erreichbar ist. Dabei haben wir die öffentliche IP-Adresse, die als Ausgabe angezeigt wurde, verwendet und versucht, uns darauf zu verbinden. Zunächst erhielten wir jedoch eine Fehlermeldung, dass der Server nicht erreichbar sei. Nach einigen Minuten funktionierte der Zugriff plötzlich. Wir stellten fest, dass wir zunächst hätten warten müssen, bis die Instanz in AWS vollständig initialisiert wurde – was wir anfangs nicht beachtet hatten. Nach der Initialisierung funktionierte der Zugriff jedoch problemlos, und wir wurden auf das Infofenster von osTicket weitergeleitet.
 
 ![Webserver_Zugriff](https://github.com/Luc080/M346-Ticketsystem/blob/main/Bilder/Webserver_Zugriff.png)
 

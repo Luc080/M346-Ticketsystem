@@ -472,6 +472,9 @@ Wie bei jedem Projekt gibt es immer Dinge, die man im Nachhinein anders oder bes
 
 ## 6. Reflexion
 ### 6.1 Luc Aeby
+Der Start in das Projekt war ehrlich gesagt nicht einfach. Mit den wenigen Informationen, die wir zur Verfügung hatten, und ohne wirkliches Vorwissen, fühlte es sich anfangs wie ein Sprung ins nichts an. Gerade zu Beginn hätten wir mehr Unterstützung vom Lehrer gebrauchen können, besonders was technische Details angeht.
+Trotzdem verlief die Umsetzung letztlich besser als erwartet. Insbesondere das Arbeiten mit Markdown war gut machbar, da wie dies bereits kannten. Unsere Gruppe funktionierte sehr gut zusammen – durch die klare Aufgabenteilung konnte jeder seinen Teil effektiv bearbeiten, was uns viel Zeit und Stress erspart hat.
+Rückblickend bin ich zufrieden mit unserem Ergebnis. Auch wenn es uns anfangs an Orientierung fehlte, haben wir durch gute Zusammenarbeit und Eigeninitiative vieles erreicht. Für künftige Projekte wäre es hilfreich, wenn wir vorab Grundlagen erhalten könnten, um uns schneller auf die eigentliche Umsetzung konzentrieren zu können. Insgesamt hat mich das Projekt aber weitergebracht, und ich bin froh, dass wir es erfolgreich abschliessen konnten.
 
 ### 6.2 Massimo Montesarchio
 

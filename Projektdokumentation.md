@@ -12,8 +12,8 @@ Das vorliegende Repository ist das Ergebnis einer gemeinsamen Entwicklung von Ye
 &nbsp;&nbsp;&nbsp;[2.1 Code erklärt](#21-code-erklärt) \
 [3. Installationsanleitung](#3-installationsanleitung) \
 [4. Testfälle](#4-testfälle) \
-&nbsp;&nbsp;&nbsp;[4.1 Testfall 1](#41-testfall-1) \
-&nbsp;&nbsp;&nbsp;[4.2 Testfall 2](#42-testfall-2) \
+&nbsp;&nbsp;&nbsp;[4.1 Testfall 1 - Webserver Zugriff](#41-testfall-1-webserver-zugriff) \
+&nbsp;&nbsp;&nbsp;[4.2 Testfall 2 - Datenbankverbindung](#42-testfall-2-datenbankverbindung) \
 [5. Verbesserungen](#5-verbesserungen) \
 [6. Reflexionen](#6-reflexion) \
 &nbsp;&nbsp;&nbsp;[6.1 Luc Aeby](#61-luc-aeby) \

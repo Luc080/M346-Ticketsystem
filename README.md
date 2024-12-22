@@ -20,10 +20,10 @@ Damit man das Projekt ausführen kannst, solltest man Folgendes installiert und 
 
 ## Installation
 1. Das Repository sollte zu beginn geklont werden:
-     ```bash
-   git clone https://github.com/Luc080/M346-Ticketsystem.git
-   cd M346-Ticketsystem
-   ```
+```bash
+git clone https://github.com/Luc080/M346-Ticketsystem.git
+cd M346-Ticketsystem
+```
 2. Setzten Sie Die benötigten berechtigungen um das Installation.sh Script ausführen zu können.
 ```bash
 chmod 755 Scripts/Installation.sh

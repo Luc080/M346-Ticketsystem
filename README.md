@@ -30,7 +30,8 @@ chmod 755 Scripts/Installation.sh
 ```
 3. Starten Sie die Installation:
 ```bash
-./Scripts/Installation.sh
+cd Scripts
+./Installation.sh
 ```
 4. Greifen Sie nachdem das Script fertig ist auf den erstellten Webserver zu indem sie die angegebene öffentliche IP in ihrem Brower eingeben.
 5. KlicKen Sie in der osTicket anscht auf "Continue"

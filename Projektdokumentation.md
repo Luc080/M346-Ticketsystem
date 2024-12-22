@@ -116,7 +116,7 @@ chmod u+x installation.sh
 |----------------------|-----------------------------|
 | **MySQL Hostname**    | <DB_SERVER_PUBLIC_IP>      |
 | **MySQL Database**    | osticket                   |
-| **MySQL Username**    | osuser              |
+| **MySQL Username**    | osuser               |
 | **MySQL Password**    | Riethuesli>12345             |
 
 8. klicken Sie nun auf "Install Now"

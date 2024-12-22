@@ -420,7 +420,7 @@ Damit alles reibungslos funktioniert, müssen folgende Schritte zuerst erledigt 
 ### Installation:
 
 1. Das Repository sollte zu beginn geklont werden:
-     ```bash
+  ```bash
    git clone https://github.com/Luc080/M346-Ticketsystem.git
    cd M346-Ticketsystem
    ```
@@ -460,7 +460,7 @@ Nach dem Ausführen des installation.sh Skripts mussten wir testen, ob der Webse
 ![Webserver_Zugriff](https://github.com/Luc080/M346-Ticketsystem/blob/main/Bilder/Webserver_Zugriff.png)
 
 ### 4.2 Testfall 2: Datenbankverbindung
-- **Datum:**22.12.2024
+- **Datum:** 22.12.2024
 - **Tester:** Yeremy Frei
 - **Resultat:**
 Nachdem wir Zugriff auf den Webserver hatten, mussten wir testen, ob die Verbindung zwischen dem Webserver und dem Datenbankserver funktioniert. In der Terraform-Konfiguration (.tf-Datei) sind die dafür notwendigen Ports freigegeben, dennoch mussten wir die Verbindung manuell überprüfen. Zum Testen versuchten wir, uns mit den im datenbank.sh-Skript konfigurierten Zugangsdaten im osTicket-Portal anzumelden. Nach Eingabe aller erforderlichen Daten konnten wir auf ‚Install Now‘ klicken und gelangten erfolgreich ins Tickettool. Während des Tests stellten wir ausserdem fest, dass die Webseite bei falscher Eingabe der Daten nicht erreichbar war. Dadurch konnten wir sicherstellen, dass die Datenbankverbindung ordnungsgemäss funktionierte.
@@ -477,12 +477,10 @@ Trotzdem verlief die Umsetzung letztlich besser als erwartet. Insbesondere das A
 Rückblickend bin ich zufrieden mit unserem Ergebnis. Auch wenn es uns anfangs an Orientierung fehlte, haben wir durch gute Zusammenarbeit und Eigeninitiative vieles erreicht. Für künftige Projekte wäre es hilfreich, wenn wir vorab Grundlagen erhalten könnten, um uns schneller auf die eigentliche Umsetzung konzentrieren zu können. Insgesamt hat mich das Projekt aber weitergebracht, und ich bin froh, dass wir es erfolgreich abschliessen konnten.
 
 ### 6.2 Massimo Montesarchio
+Mir persönlich hat dieses Projekt nicht besonders gut gefallen. Wir mussten es ohne ausreichendes Vorwissen umsetzen. Im Unterricht hatten wir nur ein Video, das AWS oberflächlich erklärt, und eine Aufgabe, die schwer verständlich war. Ich hätte es besser gefunden, wenn wir zuerst gemeinsam mit dem Lehrer eine ähnliche Übung gemacht hätten. Das hätte uns geholfen, die Grundlagen zu verstehen und einen besseren Einstieg zu finden.
 
-
+Das Einzige, was ich einigermassen konnte, war Markdown, da ich das in einem Workshop der IMS schon einmal verwendet habe. Yeremy musste mir jedoch das Skript und dessen Funktionsweise erklären, da ich hier nicht so viel beitragen konnte, wie ich gerne gewollt hätte. Insgesamt habe ich in diesem Projekt nicht so viel gelernt, wie sicherlich möglich gewesen wäre. Dennoch fand ich es cool, GitHub zu verwenden. Besonders die Commits fand ich spannend, da man genau nachvollziehen kann, was verändert wurde. Ausserdem war es interessant zu sehen, wie weit wir mit dem Projekt am Ende gekommen sind.
 
 ### 6.3 Yeremy Frei
 Zu Beginn muss ich ehrlich zugeben, dass ich mich nicht wirklich über dieses Projekt gefreut habe. Ich wurde quasi ins kalte Wasser geworfen, und ich denke, das ging nicht nur mir und meiner Gruppe so sondern auch den anderen Gruppe. Wir hatten anfangs keine klare Vorstellung davon, wie wir das Projekt umsetzen sollten. Mit der Zeit wurde jedoch alles verständlicher, und am Ende des Projekts muss ich sagen, dass es mir letztlich doch geholfen hat. Eine derartige Umsetzung mit AWS hatte ich bisher noch nie durchgeführt. Nach Rücksprache in meiner Firma stellte sich zudem heraus, dass ausser den Lehrlingen auch niemand sonst vergleichbare Erfahrungen gesammelt hat.
 Obwohl mich das Projekt mindestens 25 Arbeitsstunden und sicherlich auch einige Nerven gekostet hat, bin ich froh, dass ich es umsetzen konnte. Im Nachhinein denke ich jedoch, dass man das Modul anders hätte gestalten sollen. Wie bereits in den Verbesserungsvorschlägen erwähnt, hätte man zunächst ein solides Grundwissen über AWS aufbauen müssen, bevor man ein solches Projekt startet. Nichtsdestotrotz haben wir es am Ende geschafft, und ich bin stolz auf das Ergebnis.
-
-
-

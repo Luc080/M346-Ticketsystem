@@ -41,23 +41,23 @@ Zu Beginn des Projekts hatten wir uns ursprünglich für Zoho als unser Ticketto
 
 #### 1.3.2 Warum Terraform?
 
-Auch bei der Art der Umsetzung waren wir zu Beginn unschlüssig, weshalb wir uns zunächst für die Umsetzung durch YAML-Dateien entschieden hatten. Ähnlich wie bei Zoho stießen wir jedoch bei der Installation des Apache-Dienstes sowie bei der Installation von osTicket auf mehrere Probleme. Nach zahlreichen Stunden und noch immer keiner vernünftigen Lösung entschieden wir uns, erneut umzuschwenken und Terraform zu verwenden, da es speziell für Infrastructure-as-Code (IaC) entwickelt wurde. Terraform bot uns verschiedene Funktionen, wie z.B. integriertes State-Management, wodurch uns die Umsetzung erstaunlicherweise schnell gelang. Trotz anfänglicher Schwierigkeiten und umfangreichem Rechercheaufwand konnten wir unser System schließlich mit Terraform wie gewünscht umsetzen.
+Auch bei der Art der Umsetzung waren wir zu Beginn unschlüssig, weshalb wir uns zunächst für die Umsetzung durch YAML-Dateien entschieden hatten. Ähnlich wie bei Zoho stiessen wir jedoch bei der Installation des Apache-Dienstes sowie bei der Installation von osTicket auf mehrere Probleme. Nach zahlreichen Stunden und noch immer keiner vernünftigen Lösung entschieden wir uns, erneut umzuschwenken und Terraform zu verwenden, da es speziell für Infrastructure-as-Code (IaC) entwickelt wurde. Terraform bot uns verschiedene Funktionen, wie z.B. integriertes State-Management, wodurch uns die Umsetzung erstaunlicherweise schnell gelang. Trotz anfänglicher Schwierigkeiten und umfangreichem Rechercheaufwand konnten wir unser System schliesslich mit Terraform wie gewünscht umsetzen.
 
 ## 2. Skripte
 
-Für die implementierung haben wir ingseamt vier Scripte bzw Konfigurationen benötigt
+Für die Implementierung haben wir insgesamt vier Skripte bzw. Konfigurationsdateien benötigt:
 
 Installation.sh:
-Das Installation.sh skript automatisier die Installation von Terraform. Zudem wird es für das ausführen aller anderen scripte benötigt.
+Das Installation.sh-Skript automatisiert die Installation von Terraform. Zudem dient es als Grundlage für die Ausführung aller anderen Skripte.
 
 Terraform-Konfiguration.tf:
-Die Terraform-Konfiguration.tf Konfiguration Definiert die gesamte AWS Infrastruktur. Dazu gehören die Schlüsselpaare, Sicherheitsgruppen wie auch die zwei benötigten EC2 Instanzen.
+Die Terraform-Konfiguration.tf-Datei definiert die gesamte AWS-Infrastruktur. Dazu gehören die Schlüsselpaare, Sicherheitsgruppen sowie die zwei benötigten EC2-Instanzen.
 
 Datenbankserver.sh:
-Das Datenbankserver.sh Skript ist für die Installation wie auch Konfiguration Unserer mariaDB Datenbank zuständig. Darin wird alles nötige wie Datenbank, benutzer, zugriff wie auch die passwörter konfiguriert.
+Das Datenbankserver.sh-Skript ist für die Installation und Konfiguration unserer MariaDB-Datenbank zuständig. Es legt alles Notwendige fest, einschliesslich der Datenbank, Benutzer, Zugriffsrechte und Passwörter.
 
 Webserver.sh:
-Das Webserver.sh Skript ist für die Installation unseres ticket tools zuständig. Es konfiguriert sowohl die Apache instanz und installiert zugleich das osTicket Tool.
+Das Webserver.sh-Skript übernimmt die Installation unseres Tickettools. Es konfiguriert die Apache-Instanz und installiert gleichzeitig das osTicket-Tool.
 
 ### 2.1 Code erklärt
 
@@ -66,52 +66,33 @@ Das Webserver.sh Skript ist für die Installation unseres ticket tools zuständi
 
 Damit alles reibungslos funktioniert, müssen folgende Schritte zuerst erledigt werden:
 
-Voraussetztungen: Es muss eine Funktionierende Linux Maschine vorhanden sein, welche die nötigen berechtigungen besitzt als auch zugriff ins internet hat. Zudem sollte git installiert sein.
 
-### Ablauf:
+### Voraussetzungen
 
-1. das Repository sollte zu beginn geklont werden:
+- [x] AWS CLI musst installiert sein und korrekt konfiguriert sein.
+
+- [x] Es muss eine Funktionierende Linux Maschine vorhanden sein, welche die nötigen berechtigungen besitzt als auch zugriff ins internet hat. 
+
+- [x] git ist auf deinem System installiert.
+
+### Installation:
+
+1. Das Repository sollte zu beginn geklont werden:
      ```bash
    git clone https://github.com/Luc080/M346-Ticketsystem.git
    cd M346-Ticketsystem.git/Skripts
    ```
-2. Insatllieren sie AWS CLI:
-   
-Installieren Sie das Kommandozeilentool curl mit folgenden Commands:
-```bash
-sudo apt update
-sudo apt install curl
-```
-Mit curl wird nun die neuste Version der aws cli heruntergeladen, entpackt und installiert:
-```bash
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-unzip awscliv2.zip
-sudo ./aws/install
-```
-Durch den Abruf der installierten Version prüfen Sie, ob die Installation erfolgreich war:
-```bash
-aws --version
-```
-Sie erstellen bzw. aktualisieren die beiden Dateien credentials und config im Verzeichnis (~/.aws) indem Sie den Befehl ```bash aws configure ```ausführen und folgende Werte setzen:
-
-AWS Access Key ID: x (wird später noch überschrieben)
-AWS Secret Access Key x (wird später noch überschrieben)
-Default region name: us-east-1
-Default output format: json
-
-Danach können sie die Credentials direkt aus ihrem aws kopieren und in die Config datei einfügen und speichern.
-
-3. Setzten sie Die benötigten berechtigungen um das Installation.sh Script ausführen zu können.
+2. Setzten Sie Die benötigten berechtigungen um das Installation.sh Script ausführen zu können.
 ```bash
 chmod u+x installation.sh
 ```
-4. Starten sie die Installation:
+3. Starten Sie die Installation:
 ```bash
 ./Installation.sh
 ```
-5. Greifen sie nachdem das Script fertig ist auf den erstellten Webserver zu indem sie die angegebene éffentliche IP in ihrem Brower eingenen.
-6. klichen sie in der osTicket anscht auf "Continue"
-7. Füllen sie nu die Angezeigten Felder mit den Angegebenen Informationen ein:
+4. Greifen Sie nachdem das Script fertig ist auf den erstellten Webserver zu indem sie die angegebene öffentliche IP in ihrem Brower eingeben.
+5. KlicKen Sie in der osTicket anscht auf "Continue"
+6. Füllen Sie nu die Angezeigten Felder mit den Angegebenen Informationen ein:
    
 | Feld         | Wert                        |
 |----------------------|-----------------------------|
@@ -120,44 +101,25 @@ chmod u+x installation.sh
 | **MySQL Username**    | osuser               |
 | **MySQL Password**    | Riethuesli>12345             |
 
-8. klicken Sie nun auf "Install Now"
-   
-### Voraussetzungen
+7. klicken Sie nun auf "Install Now"
 
-- [x] AWS CLI musst installiert sein und korrekt konfiguriert sein.
-
-- [x] Ausserdem muss eine Ubuntu-Maschine bereit stehen und die notwendigen Berechtigungen, um Ressourcen in AWS zu erstellen haben.
-
-- [x] git ist auf deinem System installiert.
-
-
-### Installation
-
-**Repository klonen:** \
-Lade das Projekt von GitHub herunter und wechsle in den:
-
-    git clone https://github.com/Luc080/M346-Ticketsystem.git
-    cd M346-Ticketsystem
-
-**Skript ausführbar machen:** \
-Gib dem Installationsskript die notwendigen Berechtigungen und führe es aus:
-
-    chmod u+x deploy.sh
-    ./deploy.sh
-
-**Webserver aufrufen:** \
-Sobald das Skript abgeschlossen ist, kannst du im Browser die IP-Adresse des Webservers eingeben, um auf die zoho-Oberfläche zuzugreifen.
+8. Mögliche Lösung:
 
 ## 4. Testfälle
 
-### 4.1 Testfall 1
+### 4.1 Testfall 1: Webserver Zugriff
+**Datum:** 21.12.2024
+**Tester:** Yeremy Frei
+**Reslutat:**Nach dem Ausführen des installation.sh-Scripts mussten wir testen, ob der Webserver erreichbar ist. Dabei haben wir die öffentliche IP-Adresse, die als Ausgabe angezeigt wurde, verwendet und versucht, uns darauf zu verbinden. Zunächst erhielten wir jedoch eine Fehlermeldung, dass der Server nicht erreichbar sei. Nach einigen Minuten funktionierte der Zugriff plötzlich. Wir stellten fest, dass wir zunächst hätten warten müssen, bis die Instanz in AWS vollständig initialisiert wurde – was wir anfangs nicht beachtet hatten. Nach der Initialisierung funktionierte der Zugriff jedoch problemlos, und wir wurden auf das Infofenster von osTicket weitergeleitet.
 
-### 4.2 Testfall 2
+### 4.2 Testfall 2: Datenbankverbindung
+**Datum:**22.12.2024
+**Tester:** Yeremy Frei
+**Resultat:**Nachdem wir Zugriff auf den Webserver hatten, mussten wir testen, ob die Verbindung zwischen dem Webserver und dem Datenbankserver funktioniert. In der Terraform-Konfiguration (.tf-Datei) sind die dafür notwendigen Ports freigegeben, dennoch mussten wir die Verbindung manuell überprüfen. Zum Testen versuchten wir, uns mit den im datenbank.sh-Skript konfigurierten Zugangsdaten im osTicket-Portal anzumelden. Nach Eingabe aller erforderlichen Daten konnten wir auf ‚Install Now‘ klicken und gelangten erfolgreich ins Tickettool. Während des Tests stellten wir ausserdem fest, dass die Webseite bei falscher Eingabe der Daten nicht erreichbar war. Dadurch konnten wir sicherstellen, dass die Datenbankverbindung ordnungsgemäss funktionierte.
 
 
 ## 5. Verbesserungen
-Es wäre hilfreich gewesen, sich vorher besser mit AWS auseinanderzusetzen, um ein klareres Bild davon zu bekommen, wie es technisch funktioniert und was die Anforderungen an das Projekt und die Infrastruktur sind. Vielleicht hätten wir auch einfach mal ein bisschen mit AWS herumprobieren können, nicht, um die Projektanforderungen direkt zu erfüllen, sondern um AWS auszutesten
-
+Wie bei jedem Projekt gibt es immer Dinge, die man im Nachhinein anders oder besser machen würde. In unserem Fall hätten wir uns zu Beginn intensiver mit den verschiedenen Tickettools und Umsetzungsarten auseinandersetzen sollen. Dadurch hätten wir uns viel Zeit sparen können, die durch Fehlentscheidungen verloren ging. Ausserdem hätten wir uns unserer Meinung nach von Anfang an grundlegend mehr mit AWS beschäftigen müssen. Statt die notwendigen Informationen parallel zur Umsetzung zu suchen, wäre es sinnvoll gewesen, uns bereits im Vorfeld ein solides Grundwissen zu AWS anzueignen. Dadurch hätten sich vermutlich viele Schwierigkeiten vermeiden lassen, und die Umsetzung wäre deutlich einfacher gewesen. Nichtsdestotrotz hat am Ende alles wie erhofft funktioniert.
 
 ## 6. Reflexion
 ### 6.1 Luc Aeby

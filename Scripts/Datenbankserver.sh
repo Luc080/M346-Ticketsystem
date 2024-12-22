@@ -14,18 +14,18 @@ echo "MariaDB wird gestartet und für den Autostart aktiviert..."
 sudo systemctl start mariadb
 sudo systemctl enable mariadb
  
-# Einrichten der Datenbank und des Benutzers
+ # Datenbank einrichten
 echo "Richte die Datenbank ein..."
 sudo mysql <<EOF
 -- Erstelle die Datenbank, falls sie nicht existiert
 CREATE DATABASE osticket;
- 
+
 -- Erstelle den Benutzer neu
-CREATE USER 'osticketuser'@'%' IDENTIFIED BY 'Riethuesli>12345';
- 
+CREATE USER 'osticketuser'@'%' IDENTIFIED BY 'Riethuesli12345';
+
 -- Weise Berechtigungen zu
-GRANT ALL PRIVILEGES ON osticket.* TO 'osuser'@'%';
- 
+GRANT ALL PRIVILEGES ON osticket.* TO 'osticketuser'@'%';
+
 -- Übernehme die Änderungen
 FLUSH PRIVILEGES;
 EOF
@@ -42,7 +42,7 @@ fi
  
 # Logging aktivieren
 LOGFILE="/var/log/mariadb_setup.log"
-exec > >(tee -i $LOGFILE) 2>&1 
+exec > >(tee -i $LOGFILE) 2>&1
  
 # Warte auf den MariaDB-Dienst
 for i in {1..10}; do

@@ -61,7 +61,9 @@ Das Webserver.sh-Skript übernimmt die Installation unseres Tickettools. Es konf
 
 ### 2.1 Code erklärt
 - Im folgenden Abschnitt werden die verschiedenen Skripte erläutert. Zusätzlich sind Erklärungen zu den Skripten direkt in jedem Skript als Kommentare enthalten.
-- **Installation.sh:**
+## Installation.sh:
+
+- Bei diesem Codeblock wird Terraform erstmalig installiert.
 ```bash
 #!/bin/bash
 set -e
@@ -77,8 +79,8 @@ echo "Terraform-Setup wird gestartet..."
     sudo mv terraform /usr/local/bin/
     rm terraform_1.5.5_linux_amd64.zip
 ```
-**Erklärung:** Bei diesem Codeblock wird Terraform erstmalig installiert.
 
+- Initialisiert und Konfiguriert Terraform, um die Infrastruktur zu erstellen.
  ```bash
 # Initialisiert und konfiguriert Terraform
 echo "Terraform wird eingerichtet"
@@ -86,30 +88,29 @@ terraform init
 echo "Terraformkonfiguration wird angewendet.."
 terraform apply -auto-approve
  ```
-**Erklärung:** Initialisiert und Konfiguriert Terraform, um die Infrastruktur zu erstellen.
 
+- Die öffentlichen IP-Adressen des Webservers, wie auch Datenbankserver werden ausgegeben.
 ```bash
 # Webserver- und Datenbankserver-IPs abrufen
 WEB_SERVER_IP=$(terraform output -raw web_server_public_ip 2>/dev/null || echo "Nicht verfügbar")
 DB_SERVER_PUBLIC_IP=$(terraform output -raw db_server_public_ip 2>/dev/null || echo "Nicht verfügbar")
 ```
-**Erklärung:** Die öffentlichen IP-Adressen des Webservers, wie auch Datenbankserver werden ausgegeben.
 
-# Logging aktivieren
+- Logging aktivieren
 ```bash
 LOGFILE="/var/log/terraform_setup.log"
 ```
 
-# Sicherstellen, dass die Logdatei existiert oder sie mit sudo erstellt wird
+- Sicherstellen, dass die Logdatei existiert oder sie mit sudo erstellt wird
 ```bash
 sudo touch $LOGFILE
 ```
 
-# Alle Ausgaben (stdout und stderr) in die Logdatei und auf die Konsole leiten
+- Alle Ausgaben (stdout und stderr) in die Logdatei und auf die Konsole leiten
 ```bash
 exec > >(sudo tee -i $LOGFILE) 2>&1
 ```
-# Standardvariablen werden festgelegt
+- Standardvariablen werden festgelegt
 ```bash
 TERRAFORM_VERSION=${1:-1.5.5}
 TERRAFORM_URL="https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
@@ -121,6 +122,87 @@ if [[ "$INSTALLED_VERSION" != "$TERRAFORM_VERSION" ]]; then
     echo "Installierte Terraform-Version ($INSTALLED_VERSION) stimmt nicht mit der gewünschten Version ($TERRAFORM_VERSION) überein."
     exit 1
 fi
+```
+##Webserver.sh
+
+- Update-Pakete und grundlegende Software installieren
+```bash
+#!/bin/bash
+set -e
+ 
+echo "Installation des Webservers und der PHP-Umgebung beginnt..." 
+sudo yum update -y; sudo amazon-linux-extras enable php8.2; 
+sudo yum install -y httpd php php-mysqli wget unzip
+```
+- Starten und aktivieren des Apache Dienstes
+```bash
+echo "Starte Apache..." sudo systemctl start httpd; 
+sudo systemctl enable httpd
+```
+- osTicket herunterladen und einrichten
+ ```bash
+echo "Lade osTicket herunter..."
+wget -O /tmp/osTicket.zip https://github.com/osTicket/osTicket/releases/download/v1.18.1/osTicket-v1.18.1.zip
+sudo mkdir -p /var/www/html/osticket
+sudo unzip -o /tmp/osTicket.zip -d /var/www/html/osticket
+```
+- Verschiebe osTicket-Dateien in das Apache-Webroot
+```bash
+echo "Verschiebe osTicket-Dateien ins Webroot..."
+if [ -d "/var/www/html/osticket/upload" ]; then
+    sudo cp -r /var/www/html/osticket/upload/* /var/www/html/
+```
+- Überprüfen, ob die Datei existiert und kopieren
+```bash
+    if [ -f "/var/www/html/osticket/upload/include/ost-sampleconfig.php" ]; then
+        sudo cp /var/www/html/osticket/upload/include/ost-sampleconfig.php /var/www/html/include/ost-config.php
+    else
+        echo "Die Datei ost-sampleconfig.php wurde nicht gefunden."
+    fi
+    
+    # Temporäre Dateien entfernen
+    sudo rm -rf /var/www/html/osticket/upload
+fi
+```
+- Berechtigungen setzen
+```bash
+echo "Setze Berechtigungen für osTicket..."
+sudo chown -R apache:apache /var/www/html
+sudo chmod -R 755 /var/www/html
+```
+- Entfernt vorhandene Osticket-Verzeichnisse
+```bash
+sudo rm -rf /var/www/html/osticket
+```
+- Erstellen des Include Verzeichnis
+```bash
+sudo mkdir -p /var/www/html/include
+ ```
+- aktualisieren der Apache Konfiguration
+```bash
+echo "Passe Apache-Konfiguration an..."
+sudo sed -i "s|DocumentRoot \"/var/www/html\"|DocumentRoot \"/var/www/html\"|" /etc/httpd/conf/httpd.conf
+cat <<EOF | sudo tee /etc/httpd/conf.d/ticketSystem.conf
+<Directory "/var/www/html">
+    AllowOverride All
+    Require all granted
+</Directory>
+EOF
+```
+- Apache wird neugestartet
+```bash
+echo "Starte Apache neu..."
+sudo systemctl restart httpd
+```
+- Dieser Coeblock dient nur zu tests und wird für die umsetztung nicht benötigt
+```bash
+echo "Erstelle PHP-Info-Seite..."
+echo "<?php phpinfo(); ?>" | sudo tee /var/www/html/ticketSystem-config.php
+```
+- textausgabe in der Konsole
+```bash
+echo "Der Webserver wurde erfolgreich eingerichtet! Besuchen Sie die URL, um osTicket zu konfigurieren."
+echo "Hinweis: Die Datei ost-sampleconfig.php wird während der Webkonfiguration erstellt."
 ```
 
 ## 3. Installationsanleitung

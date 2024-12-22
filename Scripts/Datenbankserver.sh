@@ -46,7 +46,7 @@ exec > >(tee -i $LOGFILE) 2>&1
  
 # Standardwerte
 DB_NAME=${1:-osticket}
-DB_USER=${2:-osTicketbenutzer}
+DB_USER=${2:-osuser}
 DB_PASSWORD=${3:-"Riethuesli>12345"}
  
  

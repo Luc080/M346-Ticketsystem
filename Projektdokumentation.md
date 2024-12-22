@@ -412,7 +412,7 @@ Damit alles reibungslos funktioniert, müssen folgende Schritte zuerst erledigt 
 
 ### Voraussetzungen
 
-- [x] AWS CLI musst installiert sein und korrekt konfiguriert sein.
+- [x] AWS CLI musst installiert und korrekt konfiguriert sein.
 
 - [x] Es muss eine Funktionierende Linux Maschine vorhanden sein, welche die nötigen berechtigungen besitzt als auch zugriff ins internet hat. 
 
@@ -421,10 +421,10 @@ Damit alles reibungslos funktioniert, müssen folgende Schritte zuerst erledigt 
 ### Installation:
 
 1. Das Repository sollte zu beginn geklont werden:
-  ```bash
-   git clone https://github.com/Luc080/M346-Ticketsystem.git
-   cd M346-Ticketsystem
-   ```
+```bash
+git clone https://github.com/Luc080/M346-Ticketsystem.git
+cd M346-Ticketsystem
+```
 2. Setzten Sie Die benötigten berechtigungen um das Installation.sh Skript ausführen zu können.
 ```bash
 cd Scripts

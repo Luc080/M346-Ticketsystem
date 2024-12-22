@@ -440,12 +440,14 @@ chmod u+x installation.sh
 |----------------------|-----------------------------|
 | **MySQL Hostname**    | <Datenbankserver_Public_IP>      |
 | **MySQL Database**    | osticket                   |
-| **MySQL Username**    | osuser               |
-| **MySQL Password**    | Riethuesli>12345             |
+| **MySQL Username**    | osticketuser              |
+| **MySQL Password**    | Riethuesli12345             |
 
 7. klicken Sie nun auf "Install Now"
 
 8. Mögliche Lösung:
+   
+![osticket_konf](https://github.com/Luc080/M346-Ticketsystem/blob/main/Bilder/osTicket_konf.png)
 
 ## 4. Testfälle
 
@@ -455,12 +457,15 @@ chmod u+x installation.sh
 - **Reslutat:**
 Nach dem Ausführen des installation.sh-Scripts mussten wir testen, ob der Webserver erreichbar ist. Dabei haben wir die öffentliche IP-Adresse, die als Ausgabe angezeigt wurde, verwendet und versucht, uns darauf zu verbinden. Zunächst erhielten wir jedoch eine Fehlermeldung, dass der Server nicht erreichbar sei. Nach einigen Minuten funktionierte der Zugriff plötzlich. Wir stellten fest, dass wir zunächst hätten warten müssen, bis die Instanz in AWS vollständig initialisiert wurde – was wir anfangs nicht beachtet hatten. Nach der Initialisierung funktionierte der Zugriff jedoch problemlos, und wir wurden auf das Infofenster von osTicket weitergeleitet.
 
+![Webserver_Zugriff](https://github.com/Luc080/M346-Ticketsystem/blob/main/Bilder/Webserver_Zugriff.png)
+
 ### 4.2 Testfall 2: Datenbankverbindung
 - **Datum:**22.12.2024
 - **Tester:** Yeremy Frei
 - **Resultat:**
 Nachdem wir Zugriff auf den Webserver hatten, mussten wir testen, ob die Verbindung zwischen dem Webserver und dem Datenbankserver funktioniert. In der Terraform-Konfiguration (.tf-Datei) sind die dafür notwendigen Ports freigegeben, dennoch mussten wir die Verbindung manuell überprüfen. Zum Testen versuchten wir, uns mit den im datenbank.sh-Skript konfigurierten Zugangsdaten im osTicket-Portal anzumelden. Nach Eingabe aller erforderlichen Daten konnten wir auf ‚Install Now‘ klicken und gelangten erfolgreich ins Tickettool. Während des Tests stellten wir ausserdem fest, dass die Webseite bei falscher Eingabe der Daten nicht erreichbar war. Dadurch konnten wir sicherstellen, dass die Datenbankverbindung ordnungsgemäss funktionierte.
 
+![osTicket_Interface](https://github.com/Luc080/M346-Ticketsystem/blob/main/Bilder/osTicket_Interface.png)
 
 ## 5. Verbesserungen
 Wie bei jedem Projekt gibt es immer Dinge, die man im Nachhinein anders oder besser machen würde. In unserem Fall hätten wir uns zu Beginn intensiver mit den verschiedenen Tickettools und Umsetzungsarten auseinandersetzen sollen. Dadurch hätten wir uns viel Zeit sparen können, die durch Fehlentscheidungen verloren ging. Ausserdem hätten wir uns unserer Meinung nach von Anfang an grundlegend mehr mit AWS beschäftigen müssen. Statt die notwendigen Informationen parallel zur Umsetzung zu suchen, wäre es sinnvoll gewesen, uns bereits im Vorfeld ein solides Grundwissen zu AWS anzueignen. Dadurch hätten sich vermutlich viele Schwierigkeiten vermeiden lassen, und die Umsetzung wäre deutlich einfacher gewesen. Nichtsdestotrotz hat am Ende alles wie erhofft funktioniert.

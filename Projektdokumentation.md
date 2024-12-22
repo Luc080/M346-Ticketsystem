@@ -224,26 +224,29 @@ echo "MariaDB wird gestartet und für den Autostart aktiviert..."
 sudo systemctl start mariadb
 sudo systemctl enable mariadb
 ```
-- Einrichten der Datenbank und des Benutzers
+- Datenbank einrichten
 ```bash
 echo "Richte die Datenbank ein..."
 sudo mysql <<EOF
--- Erstelle die Datenbank, falls sie nicht existiert
+```
+
+- Erstelle die Datenbank, falls sie nicht existiert
+```bash
 CREATE DATABASE osticket;
- ```
+```
 - Erstelle den Benutzer neu
 ```bash
-CREATE USER 'osticketuser'@'%' IDENTIFIED BY 'Riethuesli>12345';
- ```
+CREATE USER 'osticketuser'@'%' IDENTIFIED BY 'Riethuesli12345';
+```
 - Weise Berechtigungen zu
 ```bash
-GRANT ALL PRIVILEGES ON osticket.* TO 'osuser'@'%';
- ```
+GRANT ALL PRIVILEGES ON osticket.* TO 'osticketuser'@'%';
+```
 - Übernehme die Änderungen
 ```bash
 FLUSH PRIVILEGES;
 EOF
- ```
+```
 - Anpassen der MariaDB-Konfiguration für Remote-Zugriff
 ```bash
 CONFIG_FILE="/etc/my.cnf"

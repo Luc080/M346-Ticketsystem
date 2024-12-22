@@ -427,6 +427,7 @@ Damit alles reibungslos funktioniert, müssen folgende Schritte zuerst erledigt 
    ```
 2. Setzten Sie Die benötigten berechtigungen um das Installation.sh Skript ausführen zu können.
 ```bash
+cd Scripts
 chmod 755 installation.sh
 ```
 3. Starten Sie die Installation:

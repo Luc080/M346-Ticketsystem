@@ -42,13 +42,7 @@ fi
  
 # Logging aktivieren
 LOGFILE="/var/log/mariadb_setup.log"
-exec > >(tee -i $LOGFILE) 2>&1
- 
-# Standardwerte
-DB_NAME=${1:-osticket}
-DB_USER=${2:-osuser}
-DB_PASSWORD=${3:-"Riethuesli>12345"}
- 
+exec > >(tee -i $LOGFILE) 2>&1 
  
 # Warte auf den MariaDB-Dienst
 for i in {1..10}; do

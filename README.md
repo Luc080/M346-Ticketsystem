@@ -5,7 +5,7 @@ Dieses Repository wurde von **Yeremy Frei**, **Massimo Montesarchio** und **Luc 
 
 Die Dokumentation findet man unter https://github.com/Luc080/M346-Ticketsystem/blob/main/Dokumentation.md
 
-Unser Projekt zielt darauf ab, eine AWS-Infrastruktur für ein Ticketsystem mit **zoho** bereitzustellen. Es beinhaltet:
+Unser Projekt zielt darauf ab, eine AWS-Infrastruktur für ein Ticketsystem mit **osTicket** bereitzustellen. Es beinhaltet:
 - Einen **Webserver** mit **PHP** und **Apache**
 - Einen **Datenbankserver** mit **MariaDB**
 

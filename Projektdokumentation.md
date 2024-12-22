@@ -422,11 +422,11 @@ Damit alles reibungslos funktioniert, müssen folgende Schritte zuerst erledigt 
 1. Das Repository sollte zu beginn geklont werden:
      ```bash
    git clone https://github.com/Luc080/M346-Ticketsystem.git
-   cd M346-Ticketsystem.git/Skripts
+   cd M346-Ticketsystem
    ```
 2. Setzten Sie Die benötigten berechtigungen um das Installation.sh Script ausführen zu können.
 ```bash
-chmod u+x installation.sh
+chmod 755 installation.sh
 ```
 3. Starten Sie die Installation:
 ```bash
